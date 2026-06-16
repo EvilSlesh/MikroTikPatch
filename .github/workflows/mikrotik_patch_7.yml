@@ -122,6 +122,7 @@ jobs:
         echo "159.148.147.251 upgrade.mikrotik.com" | sudo tee -a /etc/hosts
         echo "159.148.147.244 renew.mikrotik.com" | sudo tee -a /etc/hosts
         echo "159.148.147.229 cloud.mikrotik.com" | sudo tee -a /etc/hosts
+        echo "159.148.147.251 download.mikrotik.com" | sudo tee -a /etc/hosts
     
     - name: Get latest routeros version
       id: get_latest
