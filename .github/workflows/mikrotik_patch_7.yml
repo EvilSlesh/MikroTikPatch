@@ -117,16 +117,16 @@ jobs:
         python-version: '3.11' 
 
     - name: Network Diagnostic
-      run: |
-        echo "=== 1. Проверка доступности DNS (Google) ==="
-        ping -c 3 8.8.8.8 || echo "Пинг до 8.8.8.8 не прошел"
-        
-        echo "=== 2. Проверка разрешения имен (DNS) ==="
-        nslookup ://mikrotik.com || echo "Не удалось разрешить ://mikrotik.com"
+      run: |   
+        echo "=== 1. Проверка разрешения имен (DNS) ==="
+        nslookup mikrotik.com || echo "Не удалось разрешить mikrotik.com"
+        nslookup upgrade.mikrotik.com || echo "Не удалось разрешить upgrade.mikrotik.com"
         nslookup github.com || echo "Не удалось разрешить github.com"
         
-        echo "=== 3. Тестовый запрос к другому сайту ==="
+        echo "=== 2. Тестовый запрос к другому сайту ==="
         curl -I https://github.com || echo "Curl до GitHub не прошел"
+        curl -I https://mikrotik.com || echo "Curl до mikrotik.com не прошел"
+        curl -I https://upgrade.mikrotik.com || echo "Curl до upgrade.mikrotik.com не прошел"
     
     - name: Get latest routeros version
       id: get_latest
