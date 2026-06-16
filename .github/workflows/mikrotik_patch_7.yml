@@ -54,7 +54,7 @@ env:
   MIKRO_CLOUD_PUBLIC_KEY: ${{ secrets.MIKRO_CLOUD_PUBLIC_KEY }}
   MIKRO_LICENCE_URL: ${{ secrets.MIKRO_LICENCE_URL }}
   CUSTOM_LICENCE_URL: ${{ secrets.CUSTOM_LICENCE_URL }}
-  MIKRO_UPGRADE_URL: 'upgrade.mikrotik.com'
+  MIKRO_UPGRADE_URL: ${{ secrets.MIKRO_UPGRADE_URL }}
   CUSTOM_UPGRADE_URL: ${{ secrets.CUSTOM_UPGRADE_URL }}
   MIKRO_RENEW_URL: ${{ secrets.MIKRO_RENEW_URL }}
   CUSTOM_RENEW_URL: ${{ secrets.CUSTOM_RENEW_URL }}
@@ -119,21 +119,6 @@ jobs:
     - name: Configure Static DNS Mapping
       run: |
         echo "159.148.147.251 upgrade.mikrotik.com" | sudo tee -a /etc/hosts
-        echo "=== Проверка файла hosts ==="
-        cat /etc/hosts
-    
-    - name: Network Diagnostic
-      run: |   
-        echo "=== 1. Проверка разрешения имен (DNS) ==="
-        nslookup github.com || echo "Не удалось разрешить github.com"
-        nslookup ya.ru || echo "Не удалось разрешить ya.ru"
-        nslookup mail.com || echo "Не удалось разрешить mail.com"
-        nslookup mikrotik.com || echo "Не удалось разрешить mikrotik.com"
-        
-        echo "=== 2. Тестовый запрос к другому сайту ==="
-        curl -I https://github.com || echo "Curl до GitHub не прошел"
-        curl -I https://mikrotik.com || echo "Curl до mikrotik.com не прошел"
-        curl -I https://ya.ru || echo "Curl до ya.ru не прошел"
     
     - name: Get latest routeros version
       id: get_latest
