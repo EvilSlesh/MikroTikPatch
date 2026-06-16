@@ -116,6 +116,12 @@ jobs:
       with:
         python-version: '3.11' 
 
+    - name: Configure Static DNS Mapping
+      run: |
+        echo "159.148.147.251 upgrade.mikrotik.com" | sudo tee -a /etc/hosts
+        echo "=== Проверка файла hosts ==="
+        cat /etc/hosts
+    
     - name: Network Diagnostic
       run: |   
         echo "=== 1. Проверка разрешения имен (DNS) ==="
