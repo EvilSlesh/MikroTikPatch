@@ -119,14 +119,15 @@ jobs:
     - name: Network Diagnostic
       run: |   
         echo "=== 1. Проверка разрешения имен (DNS) ==="
-        nslookup mikrotik.com || echo "Не удалось разрешить mikrotik.com"
-        nslookup upgrade.mikrotik.com || echo "Не удалось разрешить upgrade.mikrotik.com"
         nslookup github.com || echo "Не удалось разрешить github.com"
+        nslookup ya.ru || echo "Не удалось разрешить ya.ru"
+        nslookup mail.com || echo "Не удалось разрешить mail.com"
+        nslookup mikrotik.com || echo "Не удалось разрешить mikrotik.com"
         
         echo "=== 2. Тестовый запрос к другому сайту ==="
         curl -I https://github.com || echo "Curl до GitHub не прошел"
         curl -I https://mikrotik.com || echo "Curl до mikrotik.com не прошел"
-        curl -I https://upgrade.mikrotik.com || echo "Curl до upgrade.mikrotik.com не прошел"
+        curl -I https://ya.ru || echo "Curl до ya.ru не прошел"
     
     - name: Get latest routeros version
       id: get_latest
